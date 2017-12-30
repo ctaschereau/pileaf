@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www.js"
+    "start": "node ./bin/www.js",
+    "testleaf": "node ./scripts/test.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
