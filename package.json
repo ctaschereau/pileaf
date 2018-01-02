@@ -7,15 +7,17 @@
     "testleaf": "node ./scripts/test.js"
   },
   "dependencies": {
+    "@beejjacobs/nissan-connect": "^1.0.14",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^4.0.0",
     "express": "~4.15.5",
     "hbs": "~4.0.1",
+    "log4js": "^2.4.1",
     "morgan": "~1.9.0",
-    "nissan-connect": "^1.1.0",
     "node-sass-middleware": "0.9.8",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "socket.io": "^2.0.4"
   }
 }

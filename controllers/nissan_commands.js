@@ -1,7 +1,6 @@
-class Stuff {
-	static async doStuff() {
-		const NissanConnect = require('nissan-connect');
-		let nc = new NissanConnect(process.env.NISSAN_CONNECT_USERNAME, process.env.NISSAN_CONNECT_PASSWORD, NissanConnect.Region[process.env.NISSAN_CONNECT_REGION]);
+class NissanCommands {
+	static async getBatteryStatus() {
+		let nc = require('./nissan_connect_instance');
 
 		try {
 			let status = await nc.getBatteryStatus();
@@ -16,4 +15,4 @@ class Stuff {
 		}
 	}
 }
-module.exports = Stuff;
+module.exports = NissanCommands;
