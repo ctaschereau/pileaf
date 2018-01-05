@@ -1,6 +1,6 @@
 class NissanCommands {
 	static async getBatteryStatus() {
-		let nc = require('./nissan_connect_instance');
+		let nc = require('../models/nissan_connect_instance');
 
 		try {
 			let status = await nc.getBatteryStatus();
