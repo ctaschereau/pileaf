@@ -6,6 +6,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 
+process.on('uncaughtException', (err) => {
+	console.error(`uncaughtException : ${err}`);
+	process.exit(1);
+});
+process.on('unhandledRejection', (err) => {
+	console.error(`unhandledRejection : ${err}`);
+	process.exit(1);
+});
+
 require('dotenv').config();
 
 const index = require('./routes/index');
@@ -33,7 +42,7 @@ app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	var err = new Error('Not Found');
+	let err = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });
