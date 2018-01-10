@@ -32,5 +32,16 @@ class NissanCommands {
 			logger.error(err);
 		}
 	}
+
+	static async turnOffClimateControl() {
+		let nc = new NissanConnect();
+
+		try {
+			await nc.acOff();
+			logger.info('ac is on');
+		} catch (err) {
+			logger.error(err);
+		}
+	}
 }
 module.exports = NissanCommands;

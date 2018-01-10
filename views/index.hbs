@@ -1,2 +1,29 @@
+
 <h1>{{title}}</h1>
 <p>{{description}}</p>
+<button id="getBatteryStatus">Get battery status</button>
+<pre id="console"></pre>
+
+<script>
+	let socket = io();
+
+	$(() => {
+		let consoleOutput = $('pre#id');
+		$('button#getBatteryStatus').click(() => {
+			$.ajax({
+				url : '/batStats',
+				success : (data) => {
+					console.log(`success : ${JSON.stringify(data)}`);
+					socket.on('info', (msg) => {
+						consoleOutput.append(msg);
+					});
+				},
+				error : (jqXHR, textStatus, errorThrown) => {
+					console.error(jqXHR);
+					console.error(textStatus);
+					console.error(errorThrown);
+				}
+			})
+		})
+	});
+</script>

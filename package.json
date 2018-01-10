@@ -1,11 +1,11 @@
 {
   "name": "pileaf",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www.js",
-    "get-battery-status": "node ./scripts/run_command.js command=bat",
-    "turn-on-climate-control": "node ./scripts/run_command.js command=ac"
+    "bat-stats": "node ./scripts/run_command.js command=bat",
+    "cc-on": "node ./scripts/run_command.js command=ac"
   },
   "dependencies": {
     "@beejjacobs/nissan-connect": "^1.0.14",
