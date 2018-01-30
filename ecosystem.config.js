@@ -3,10 +3,7 @@ module.exports = {
 		{
 			name : 'pileaf',
 			script : 'bin/www.js',
-			max_restarts : 5,
-			env: {
-				PORT: 2999
-			}
+			max_restarts : 5
 		}
 	],
 
