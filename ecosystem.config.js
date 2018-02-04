@@ -5,7 +5,10 @@ module.exports = {
 			script : 'bin/www.js',
 			max_restarts : 5
 		}
-	],
+	]
+
+	/*
+	,
 
 	deploy : {
 		production : {
@@ -17,4 +20,5 @@ module.exports = {
 			'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
 		}
 	}
+	*/
 };

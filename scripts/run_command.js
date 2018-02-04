@@ -18,7 +18,7 @@ switch (command) {
 	case 'bat':
 		nissanCommands.getBatteryStatus().catch(logger.error);
 		break;
-	case 'ac':
+	case 'cc':
 		nissanCommands.turnOnClimateControl().catch(logger.error);
 		break;
 	default:
