@@ -16,9 +16,10 @@ class NissanCommands {
 			logger.info(`charging : ${batteryStatus.charging}`);
 			logger.info(`chargeMode : ${batteryStatus.chargeMode}`);
 			logger.info(`chargeStatus : ${batteryStatus.chargeStatus}`);
-
+			return batteryStatus;
 		} catch (err) {
 			logger.error(err);
+			return null;
 		}
 	}
 

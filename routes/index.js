@@ -1,4 +1,5 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler');
 const nissanCommands = require('../controllers/nissan_commands');
 
 const logger = require('../logger');
@@ -7,20 +8,22 @@ let router = express.Router();
 
 router.get('/', (req, res, next) => {
 	//logger.info('test');
-	res.render('index', {
-		title : 'Pi Leaf',
-		description : `🔌🔋🚗`
-	});
+	res.render('index', {});
 });
 
-router.get('/batStats', (req, res, next) => {
-	nissanCommands.getBatteryStatus().catch(logger.error);
-	res.json({ a: 1 });
-});
+router.get('/batStats', asyncHandler(async (req, res, next) => {
+	let result = await nissanCommands.getBatteryStatus();
+	res.json(result);
+}));
 
-router.get('/ccON', (req, res, next) => {
-	nissanCommands.turnOnClimateControl().catch(logger.error);
-	res.json({ a: 1 });
-});
+router.post('/ccON', asyncHandler(async (req, res, next) => {
+	await nissanCommands.turnOnClimateControl();
+	res.json({ success: true });
+}));
+
+router.post('/ccOFF', asyncHandler(async (req, res, next) => {
+	await nissanCommands.turnOffClimateControl();
+	res.json({ success: true });
+}));
 
 module.exports = router;

@@ -1,29 +1,63 @@
 
-<h1>{{title}}</h1>
-<p>{{description}}</p>
-<button id="getBatteryStatus">Get battery status</button>
-<pre id="console"></pre>
+<h1>PiLeaf</h1>
+<p>Does stuff with a Leaf</p>
+<ul>
+	<li><button id="getBatteryStatus">Get battery status</button></li>
+	<li><button id="ccON">Climate control ON</button></li>
+	<li><button id="ccOFF">Climate control OFF</button></li>
+	<li><button id="setChargingON">Charging On</button></li>
+	<li><button id="setChargingOFF">Charging OFF</button></li>
+</ul>
+<pre id="commandOutput"></pre>
 
 <script>
-	let socket = io();
+	let commandOutput;
+	/*let socket = io();
+	socket.on('info', (msg) => {
+		consoleOutput.append(msg);
+	});*/
+
+	let ajaxErrorFn = (jqXHR, textStatus, errorThrown) => {
+		commandOutput.html(`error : ${JSON.stringify(textStatus)}`);
+		console.error(jqXHR);
+		console.error(textStatus);
+		console.error(errorThrown);
+	};
 
 	$(() => {
-		let consoleOutput = $('pre#id');
+		commandOutput = $('pre#commandOutput');
+
 		$('button#getBatteryStatus').click(() => {
 			$.ajax({
 				url : '/batStats',
 				success : (data) => {
-					console.log(`success : ${JSON.stringify(data)}`);
-					socket.on('info', (msg) => {
-						consoleOutput.append(msg);
-					});
+					commandOutput.html(`success : ${JSON.stringify(data)}`);
 				},
-				error : (jqXHR, textStatus, errorThrown) => {
-					console.error(jqXHR);
-					console.error(textStatus);
-					console.error(errorThrown);
-				}
+				error : ajaxErrorFn
 			})
-		})
+		});
+
+		$('button#ccON').click(() => {
+			$.ajax({
+				url : '/ccON',
+				method : 'POST',
+				success : (data) => {
+					commandOutput.html(`success : ${JSON.stringify(data)}`);
+				},
+				error : ajaxErrorFn
+			})
+		});
+		});
+
+		$('button#ccOFF').click(() => {
+			$.ajax({
+				url : '/ccOFF',
+				method : 'POST',
+				success : (data) => {
+					commandOutput.html(`success : ${JSON.stringify(data)}`);
+				},
+				error : ajaxErrorFn
+			})
+		});
 	});
 </script>
