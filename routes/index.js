@@ -1,8 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const nissanCommands = require('../controllers/nissan_commands');
+const CommandFactory = require('../controllers/command_factory');
 
 const logger = require('../logger');
+
+let commander = CommandFactory.getCommander();
 
 let router = express.Router();
 
@@ -12,17 +14,21 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/batStats', asyncHandler(async (req, res, next) => {
-	let result = await nissanCommands.getBatteryStatus();
-	res.json(result);
+	try {
+		let result = await commander.getBatteryStatus();
+		res.json(result);
+	} catch (err) {
+		res.end(500);
+	}
 }));
 
 router.post('/ccON', asyncHandler(async (req, res, next) => {
-	await nissanCommands.turnOnClimateControl();
+	await commander.turnOnClimateControl();
 	res.json({ success: true });
 }));
 
 router.post('/ccOFF', asyncHandler(async (req, res, next) => {
-	await nissanCommands.turnOffClimateControl();
+	await commander.turnOffClimateControl();
 	res.json({ success: true });
 }));
 

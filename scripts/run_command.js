@@ -10,16 +10,18 @@ process.on('unhandledRejection', (err) => {
 require('dotenv').config();
 
 const logger = require('../logger');
-const nissanCommands = require('../controllers/nissan_commands');
+const CommandFactory = require('../controllers/command_factory');
+
+let commander = CommandFactory.getCommander();
 
 let command = process.argv[2].replace('command=', '');
 
 switch (command) {
 	case 'bat':
-		nissanCommands.getBatteryStatus().catch(logger.error);
+		commander.getBatteryStatus().catch(logger.error);
 		break;
 	case 'cc':
-		nissanCommands.turnOnClimateControl().catch(logger.error);
+		commander.turnOnClimateControl().catch(logger.error);
 		break;
 	default:
 		logger.warn(JSON.stringify(process.argv));
