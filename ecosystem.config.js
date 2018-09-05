@@ -13,7 +13,7 @@ module.exports = {
 	deploy : {
 		production : {
 			user : 'pi',
-			host : 'cedrictaschereau.info',
+			host : 'cedrictaschereau.science',
 			ref : 'origin/master',
 			repo : 'git@github.com:ctaschereau/pileaf.git',
 			path : '/home/pi/pileaf',

@@ -6,7 +6,7 @@ class Logger {
 	}
 
 	log(...args) {
-		logger.info(this.prefix, ...args);
+		logger.info(`${this.prefix} ${[...args].join(' ')}`);
 	}
 
 	get prefix() {

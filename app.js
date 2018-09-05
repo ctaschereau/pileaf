@@ -7,11 +7,11 @@ const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 
 process.on('uncaughtException', (err) => {
-	console.error(`uncaughtException : ${err}`);
+	console.error(`uncaughtException : ${err.stack}`);
 	process.exit(1);
 });
 process.on('unhandledRejection', (err) => {
-	console.error(`unhandledRejection : ${err}`);
+	console.error(`unhandledRejection : ${err.stack}`);
 	process.exit(1);
 });
 
@@ -57,5 +57,30 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error');
 });
+
+app.setupSocketIO = function(httpServer) {
+	const logger = require('./logger');
+	require('winston-socket.io');
+
+	const winston = require('winston');
+	logger.add(new winston.transports.SocketIO({
+		port: process.env.PORT,
+		secure: false,
+		reconnect: true
+	}));
+
+	let io = require('socket.io')(httpServer);
+	io.on('connection', function(socket){
+		logger.info(`a user connected`);
+
+		socket.on('log', (msg) => {
+			io.emit('log', msg);
+		});
+
+		socket.on('disconnect', function(){
+			logger.info('user disconnected');
+		});
+	});
+};
 
 module.exports = app;

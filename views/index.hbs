@@ -12,10 +12,10 @@
 
 <script>
 	let commandOutput;
-	/*let socket = io();
-	socket.on('info', (msg) => {
-		consoleOutput.append(msg);
-	});*/
+	let socket = io();
+	socket.on('log', (msg) => {
+		commandOutput.append(`<span>${JSON.stringify(msg)}</span><br />`);
+	});
 
 	let ajaxErrorFn = (jqXHR, textStatus, errorThrown) => {
 		commandOutput.html(`error : ${JSON.stringify(textStatus)}`);
