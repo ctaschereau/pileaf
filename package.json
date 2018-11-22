@@ -19,7 +19,7 @@
     "hbs": "~4.0.1",
     "inquirer": "^6.2.0",
     "lodash": "^4.17.10",
-    "morgan": "~1.9.0",
+    "morgan": "^1.9.1",
     "serve-favicon": "~2.5.0",
     "socket.io": "^2.1.1",
     "winston": "^3.0.0",
