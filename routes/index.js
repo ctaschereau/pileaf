@@ -18,6 +18,7 @@ router.get('/batStats', asyncHandler(async (req, res, next) => {
 		let result = await commander.getBatteryStatus();
 		res.json(result);
 	} catch (err) {
+		logger.error(err);
 		res.end(500);
 	}
 }));
