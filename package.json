@@ -9,7 +9,7 @@
     "cc-on": "node ./scripts/run_command.js command=cc"
   },
   "dependencies": {
-    "@beejjacobs/nissan-connect": "git@github.com:beejjacobs/nissan-connect.git#8d3d779486f0199968684bf4bbb280ed20d8edc7",
+    "@beejjacobs/nissan-connect": "git+https://github.com/beejjacobs/nissan-connect.git#8d3d779486f0199968684bf4bbb280ed20d8edc7",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
