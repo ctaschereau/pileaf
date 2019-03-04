@@ -3,7 +3,8 @@ const format = winston.format;
 //require('winston-socket.io');
 
 let logFormat = format.combine(
-	format.timestamp({ format : 'YYYY-MM-DD HH:mm:ss.SSS' }),
+	//format.timestamp({ format : 'YYYY-MM-DD HH:mm:ss.SSS' }),
+	format.timestamp({ format : 'HH:mm:ss.SSS' }),
 	format.align(),
 	format.splat(),
 	format.printf(info => `[${info.timestamp}] [${info.level}] - ${info.message}`)

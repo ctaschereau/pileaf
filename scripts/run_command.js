@@ -18,10 +18,14 @@ let command = process.argv[2].replace('command=', '');
 
 switch (command) {
 	case 'bat':
-		commander.getBatteryStatus().catch(logger.error);
+		commander.getBatteryStatus().catch(err => {
+			logger.error(err.message);
+		});
 		break;
 	case 'cc':
-		commander.turnOnClimateControl().catch(logger.error);
+		commander.turnOnClimateControl().catch(err => {
+			logger.error(err.message);
+		});
 		break;
 	default:
 		logger.warn(JSON.stringify(process.argv));
