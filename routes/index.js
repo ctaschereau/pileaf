@@ -33,4 +33,15 @@ router.post('/ccOFF', asyncHandler(async (req, res, next) => {
 	res.json({ success: true });
 }));
 
+router.post('/ccScheduledStart', asyncHandler(async (req, res, next) => {
+	// TODO : Sanitize inputs!
+	await commander.setAcSchedule(req.body.datetime);
+	res.json({ success: true });
+}));
+
+router.post('/setChargingON', asyncHandler(async (req, res, next) => {
+	await commander.startCharging();
+	res.json({ success: true });
+}));
+
 module.exports = router;

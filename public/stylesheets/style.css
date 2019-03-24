@@ -7,7 +7,19 @@ a {
 	color: #00B7FF;
 }
 
+.buttonList {
+	list-style-type: none;
+}
+
+.buttonList > li {
+	margin-bottom: 20px;
+}
+
 pre {
 	color: black;
 	background-color: lightgray;
+}
+
+#commandProgressOutput {
+	display: none;
 }

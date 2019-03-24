@@ -1,62 +1,18 @@
 
 <h1>PiLeaf</h1>
 <p>Does stuff with a Leaf</p>
-<ul>
-	<li><button id="getBatteryStatus">Get battery status</button></li>
-	<li><button id="ccON">Climate control ON</button></li>
-	<li><button id="ccOFF">Climate control OFF</button></li>
-	<li><button id="setChargingON">Charging On</button></li>
-	<li><button id="setChargingOFF">Charging OFF</button></li>
+<ul class="buttonList">
+	<li><button class="btn btn-primary" id="getBatteryStatus">Get battery status</button></li>
+	<li><button class="btn btn-primary" id="ccON">Climate control ON</button></li>
+	<li><button class="btn btn-primary" id="ccOFF">Climate control OFF</button></li>
+	<li>
+		<button class="btn btn-primary" id="ccScheduledStartBtn">Start climate control at this time : </button>
+		<input type="date" id="ccScheduledStartDate">
+		<input type="time" id="ccScheduledStartTime">
+	</li>
+	<li><button class="btn btn-primary" id="setChargingON">Charging On</button></li>
 </ul>
 <pre id="commandOutput"></pre>
+<button type="button" class="btn btn-secondary" id="toggleProgress">Show/hide progress (a.k.a : debug logs)</button>
+<pre id="commandProgressOutput"></pre>
 
-<script>
-	let commandOutput;
-	let socket = io();
-	socket.on('log', (msg) => {
-		commandOutput.append(`<span>${JSON.stringify(msg)}</span><br />`);
-	});
-
-	let ajaxErrorFn = (jqXHR, textStatus, errorThrown) => {
-		commandOutput.html(`error : ${JSON.stringify(textStatus)}`);
-		console.error(jqXHR);
-		console.error(textStatus);
-		console.error(errorThrown);
-	};
-
-	$(() => {
-		commandOutput = $('pre#commandOutput');
-
-		$('button#getBatteryStatus').click(() => {
-			$.ajax({
-				url : '/batStats',
-				success : (data) => {
-					commandOutput.html(`success : ${JSON.stringify(data)}`);
-				},
-				error : ajaxErrorFn
-			})
-		});
-
-		$('button#ccON').click(() => {
-			$.ajax({
-				url : '/ccON',
-				method : 'POST',
-				success : (data) => {
-					commandOutput.html(`success : ${JSON.stringify(data)}`);
-				},
-				error : ajaxErrorFn
-			})
-		});
-
-		$('button#ccOFF').click(() => {
-			$.ajax({
-				url : '/ccOFF',
-				method : 'POST',
-				success : (data) => {
-					commandOutput.html(`success : ${JSON.stringify(data)}`);
-				},
-				error : ajaxErrorFn
-			})
-		});
-	});
-</script>

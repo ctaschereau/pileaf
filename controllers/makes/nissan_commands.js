@@ -21,6 +21,7 @@ class NissanCommands extends AbstractCommands{
 		logger.info(`charging : ${batteryStatus.isCharging}`);
 		logger.info(`chargeMode : ${batteryStatus.chargeMode}`);
 		logger.info(`chargeStatus : ${batteryStatus.chargeStatus}`);
+		// TODO : Get scheduled CC start time (if any). Where do I get that???
 		return batteryStatus;
 	}
 
@@ -30,6 +31,14 @@ class NissanCommands extends AbstractCommands{
 
 	async turnOffClimateControl() {
 		await this._nc.acOff();
+	}
+
+	async setAcSchedule(dateTime) {
+		await this._nc.setAcSchedule(dateTime);
+	}
+
+	async startCharging() {
+		await this._nc.startCharging();
 	}
 }
 module.exports = NissanCommands;

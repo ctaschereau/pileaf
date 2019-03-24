@@ -13,10 +13,7 @@ Mainly used to start the climate control *when* the service works
 
 ## TODOs
 
-* Add a timeout to prevent infinite loop when the server does not answer.
-* Hide/toggle/prettify the output logs that are sent client-side.
 * Render server responses correctly client-side.
 * Make the overall design not look like it was made by a programmer (even it was).
-* Add "timed start of climate control", "start charging" and "end charging" functions.
 * Support different makes/models.
 * Save user config somewhere better than a .env file and allow multiple users/cars.
