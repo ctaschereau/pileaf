@@ -17,7 +17,7 @@ $(() => {
 
 	let commonOptions = {
 		success : (data) => {
-			commandOutput.html(`success : ${JSON.stringify(data)}`);
+			commandOutput.html(`success : ${JSON.stringify(data, null, 4)}`);
 		},
 		error : (jqXHR, textStatus, errorThrown) => {
 			commandOutput.html(`error : ${JSON.stringify(textStatus)}`);
