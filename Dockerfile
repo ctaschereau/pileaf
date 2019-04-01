@@ -1,4 +1,7 @@
-FROM node:10
+FROM arm32v7/node:10
+
+RUN apt-get update
+RUN apt-get install -y git
 
 # Create app directory
 WORKDIR /usr/src/pileaf
